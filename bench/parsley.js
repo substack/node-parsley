@@ -1,21 +1,17 @@
 var parsley = require('../');
+var ServerResponse = require('http').ServerResponse;
 var net = require('net');
 
 net.createServer(function (stream) {
     parsley(stream, function (req) {
+        var res = new ServerResponse(req);
+        res.assignSocket(stream);
+        
         req.on('headers', function (headers) {
-            stream.write([
-                '200 HTTP/1.1 OK',
-                'Connection: close',
-                'Content-Type: text/plain',
-                '',
-                '',
-                'pow',
-                '',
-            ].join('\r\n'));
+            res.end('pow\r\n');
             stream.end();
         });
     });
 }).listen(7000);
 
-console.log('ab -n 1000 -c 10 http://localhost:7000/');
+console.log('ab -n 5000 -c 10 http://localhost:7000/');
