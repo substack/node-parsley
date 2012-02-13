@@ -6,6 +6,8 @@ HTTP parser written in node with hooks into the raw header and raw body.
 You should only need this module if you're writing an HTTP proxy or something
 similarly nefarious.
 
+[![build status](https://secure.travis-ci.org/substack/node-parsley.png)](http://travis-ci.org/substack/node-parsley)
+
 example
 =======
 
@@ -100,14 +102,20 @@ methods
 
 var parsley = require('parsley')
 
-parsley(stream, cb)
--------------------
+var p = parsley(stream, cb)
+---------------------------
 
 Parse `stream`, calling `cb` with a new `http.IncomingMessage`
 object as soon as the first piece of data comes in.
 
 If the connection is keep-alive, multiple requests may come through `cb` on the
 same stream.
+
+p.upgrade()
+-----------
+
+Put the parser into upgrade mode manually. This is done automatically when the
+"upgrade" header is present or "connection: upgrade".
 
 events
 ======
