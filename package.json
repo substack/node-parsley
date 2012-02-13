@@ -1,7 +1,7 @@
 {
     "name" : "parsley",
     "description" : "pure javascript http parser",
-    "version" : "0.0.2",
+    "version" : "0.1.0",
     "repository" : {
         "type" : "git",
         "url" : "git://github.com/substack/node-parsley.git"
@@ -21,7 +21,7 @@
     },
     "dependencies" : {},
     "devDependencies" : {
-        "tap" : "0.0.x",
+        "tap" : "0.1.x",
         "chunky" : "0.0.x"
     },
     "engines" : {
