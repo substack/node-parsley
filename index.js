@@ -2,6 +2,8 @@ module.exports = function (stream, cb) {
     return new Parser(stream, cb);
 };
 
+module.exports.Parser = Parser;
+
 function Parser (stream, cb) {
     var self = this;
     self.stream = stream;
